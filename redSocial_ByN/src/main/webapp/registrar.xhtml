@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:body>
+	<h1>Registro</h1>
+	<h:form>
+		<div>
+			<p style="display: inline-block; width: 100px;">Usuario</p>
+			<h:inputText value="#{mbRegistrar.nombreUsuario}" />
+		</div>
+		<div>
+			<p style="display: inline-block; width: 100px;">Email</p>
+			<h:inputText value="#{mbRegistrar.email}" />
+		</div>
+		<div>
+			<p style="display: inline-block; width: 100px;">Password</p>
+			<h:inputSecret value="#{mbRegistrar.password}" />
+		</div>
+		<div style="width: 98px;">
+			<h:commandLink action="#{mbRegistrar.registrar()}" >
+				<p style="text-decoration: none; background-color: silver; border-radius: 5px; padding: 10px; border-style: groove;">Registrarse</p>
+			</h:commandLink>
+		</div>
+	</h:form>
+</h:body>
+</html>

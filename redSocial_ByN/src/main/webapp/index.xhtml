@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+   <title>Index</title>
+   <h:outputStylesheet library="css" name="estilo.css"  />
+</h:head>
+
+<h:body>
+    <f:view>
+       	<h:form style="background-color: lightgray; height: 30px;">
+			<nav style="float: right;">
+				<h:link value="Iniciar Sesion" outcome="login" rendered="#{not mbAutenticar.estaLogeado()}" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+				<h:link value="Registrarse" outcome="registrar" rendered="#{not mbAutenticar.estaLogeado()}" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+				<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.deslogear()}" rendered="#{mbAutenticar.estaLogeado()}" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			</nav>
+		</h:form>
+		
+        <h1>Bienvenido a Blanco y Negro Red Social!</h1>
+		
+		<h:dataTable value="#{mbAutenticar.obtenerListaUsuarios()}" var="usuario">
+		    <h:column>
+		        <h:link value="#{usuario.email}">
+		        </h:link>
+		    </h:column>
+		</h:dataTable>
+    </f:view>
+</h:body>
+</html>

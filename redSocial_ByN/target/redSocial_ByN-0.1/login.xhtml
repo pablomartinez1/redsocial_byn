@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:body>
+	<h1>Iniciar Sesion</h1>
+	<h:form>
+		<div>
+			<label>Usuario</label>
+			<h:inputText value="#{mbAutenticar.nombreUsuario}" />
+		</div>
+		<div>
+			<label>Email</label>
+			<h:inputText value="#{mbAutenticar.email}" />
+		</div>
+		<div>
+			<label>Password</label>
+			<h:inputSecret value="#{mbAutenticar.password}" />
+		</div>
+		<h:commandLink action="#{mbAutenticar.logear()}" >
+			Entrar
+		</h:commandLink>
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+   <title>Index</title>
+   <h:outputStylesheet library="css" name="estilo.css"  />
+</h:head>
+
+<h:body>
+    <f:view>
+        <h1>Hola mundo!</h1>
+   
+       	<h:form style="background-color: lightgray;">
+			<nav>
+				<h:link value="Iniciar Sesion" outcome="login" rendered="#{not mbAutenticar.estaLogeado()}" />
+				<h:link value="Registrarse" outcome="registrar" rendered="#{not mbAutenticar.estaLogeado()}"/>
+				<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.deslogear()}" rendered="#{mbAutenticar.estaLogeado()}"/>
+			</nav>
+		</h:form>
+		
+		<h:dataTable value="#{mbAutenticar.obtenerListaUsuarios()}" var="usuario">
+		    <h:column>
+		        <h:link value="#{usuario.email}">
+		        </h:link>
+		    </h:column>
+		</h:dataTable>
+    </f:view>
+</h:body>
+</html>
