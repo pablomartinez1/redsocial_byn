@@ -1,6 +1,9 @@
 bd\BDUsuario.class
 filtro\FiltroAutenticacion.class
 controller\ControladorUsuario.class
+controller\ControladorPost.class
+bd\BDPost.class
 model\Usuario.class
 view\MbAutenticar.class
 view\MbRegistrar.class
+model\Post.class

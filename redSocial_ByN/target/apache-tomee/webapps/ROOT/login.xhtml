@@ -3,6 +3,15 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 <h:body>
+    <h:form style="background-color: lightgray; height: 30px;">
+		<nav>
+			<h:link value="Inicio" outcome="index" style="font-size:20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			<h:link value="Iniciar Sesion" outcome="login" rendered="#{not mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			<h:link value="Registrarse" outcome="registrar" rendered="#{not mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.deslogear()}" rendered="#{mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+		</nav>
+	</h:form>
+	
 	<h1>Iniciar Sesion</h1>
 	<h:form>
 		<div>

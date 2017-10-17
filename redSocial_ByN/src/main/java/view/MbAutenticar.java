@@ -30,6 +30,10 @@ public class MbAutenticar implements Serializable {
 		return usuarioActual != null;
 	}
 	
+	public Usuario usuarioLogeado(){ 
+		return usuarioActual;
+	}
+	
 	public ArrayList<Usuario> obtenerListaUsuarios() {
 		return CtrlUsuario.listaUsuarios();
 	}
@@ -40,14 +44,14 @@ public class MbAutenticar implements Serializable {
 		password = null;
 		email = null;
 		if(estaLogeado())
-			return "index?faces-redirect=true";
+			return "home?faces-redirect=true";
 		else 
 			return null;
 	}
 	
 	public String deslogear(){
 		usuarioActual = null;
-		return "index";
+		return "index?faces-redirect=true";
 	}
 	
 	public String getEmail() {

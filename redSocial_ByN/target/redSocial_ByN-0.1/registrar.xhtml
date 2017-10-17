@@ -3,23 +3,34 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 <h:body>
+	<h:form style="background-color: lightgray; height: 30px;">
+		<nav>
+			<h:link value="Inicio" outcome="index" style="font-size:20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			<h:link value="Iniciar Sesion" outcome="login" rendered="#{not mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			<h:link value="Registrarse" outcome="registrar" rendered="#{not mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.deslogear()}" rendered="#{mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+		</nav>
+	</h:form>
+	
 	<h1>Registro</h1>
 	<h:form>
 		<div>
-			<label>Usuario</label>
+			<p style="display: inline-block; width: 100px;">Usuario</p>
 			<h:inputText value="#{mbRegistrar.nombreUsuario}" />
 		</div>
 		<div>
-			<label>Email</label>
+			<p style="display: inline-block; width: 100px;">Email</p>
 			<h:inputText value="#{mbRegistrar.email}" />
 		</div>
 		<div>
-			<label>Password</label>
+			<p style="display: inline-block; width: 100px;">Password</p>
 			<h:inputSecret value="#{mbRegistrar.password}" />
 		</div>
-		<h:commandLink action="#{mbRegistrar.registrar()}" >
-			Registrarse
-		</h:commandLink>
+		<div style="width: 98px;">
+			<h:commandLink action="#{mbRegistrar.registrar()}" >
+				<p style="text-decoration: none; background-color: silver; border-radius: 5px; padding: 10px; border-style: groove;">Registrarse</p>
+			</h:commandLink>
+		</div>
 	</h:form>
 </h:body>
 </html>

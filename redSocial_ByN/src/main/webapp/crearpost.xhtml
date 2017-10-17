@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:body>
+    <h:form style="background-color: lightgray; height: 30px;">
+		<nav>
+			<h:link value="Crear Post" outcome="crearpost" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			<h:link value="Ver Mis Posts" outcome="misposts" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.deslogear()}" rendered="#{mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+		</nav>
+	</h:form>
+	
+	<h1>Crear Post</h1>
+	<h:form>
+		<div>
+			<p style="display: inline-block; width: 100px;">Post:</p>
+			<h:inputTextarea cols="30" rows="10" value="#{mbPost.contenido}" />
+			
+		</div>
+		<div style="width: 68px;">
+			<h:commandLink action="#{mbPost.crear()}">
+				<p style="text-decoration: none; background-color: silver; border-radius: 5px; padding: 10px; border-style: groove;">Crear</p>
+			</h:commandLink>
+		</div>
+	</h:form>
+</h:body>
+</html>

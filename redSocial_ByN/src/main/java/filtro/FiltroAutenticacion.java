@@ -28,8 +28,10 @@ public class FiltroAutenticacion implements Filter{
 		HttpServletRequest servReq = (HttpServletRequest) req;
 		HttpServletResponse servResp = (HttpServletResponse) resp;
 		
-		if(servReq.getRequestURI().equals("/home.xhtml") && !MbAutenticar.estaLogeado()){
-			servResp.sendRedirect("register.xhtml");
+		if((servReq.getRequestURI().equals("/home.xhtml") && !MbAutenticar.estaLogeado()) || 
+			(servReq.getRequestURI().equals("/crearpost.xhtml") && !MbAutenticar.estaLogeado()) ||
+			(servReq.getRequestURI().equals("/misposts.xhtml") && !MbAutenticar.estaLogeado())){
+			servResp.sendRedirect("index.xhtml");
 		}  else {
 			chain.doFilter(req, resp);
 		}
