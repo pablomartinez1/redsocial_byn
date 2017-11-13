@@ -43,9 +43,11 @@ public class ControladorComentario {
     }
 	
 	public List<Comentario> listaComentarios(Post post){
-		CriteriaQuery<Post> cq = entityManager.getCriteriaBuilder().createQuery(Post.class);
-		cq.select(cq.from(Post.class));
+		
+		CriteriaQuery<Comentario> cq = entityManager.getCriteriaBuilder().createQuery(Comentario.class);
+		cq.select(cq.from(Comentario.class));
 		return lista;
+		
 	}
 }
 

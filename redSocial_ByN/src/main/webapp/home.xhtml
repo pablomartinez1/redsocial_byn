@@ -23,8 +23,8 @@
 		a Blanco y Negro Red Social!
 		</h1>
 		
-		<h:dataTable value="#{mbPost.listaPosts()}" var="post">
-		    <h:column>
+		<h:panelGroup>
+		    <ui:repeat value="#{mbPost.listaPosts()}" var="post">
 		    <div style="background-color: silver;">
 		    	<div style="display: inline-block;">
 			        <h:outputText  
@@ -43,11 +43,8 @@
 		        </h:outputText >
 	        </div>
 	        
-	        <div>
-	        	
-	        </div>
     		<div style="padding: 10px; background-color: lightblue; border-bottom: 1px solid gray; border-top: 1px solid gray;">
-	    		<ul>
+	    		
 	    			<ui:repeat value="#{mbComentario.listaComentarios(post)}" var="comentario">
 			    		<div>
 			    		<h:outputText  
@@ -65,12 +62,12 @@
 					</ui:repeat>
 					<h:form>
 					<h:inputText style="display: inline-block;" value="#{mbComentario.comentario}" />
-	        		<h:button action="#{mbComentario.crear()}" style="display: inline-block;" value="Comentar"></h:button>
+	        		<h:button action="#{mbComentario.crear(post)}" style="display: inline-block;" value="Comentar"></h:button>
 					</h:form>
-		    	</ul>
+		    	
 		    </div>
-		    </h:column>
-		</h:dataTable>
+		    </ui:repeat>
+		</h:panelGroup>
     </f:view>
 </h:body>
 </html>
