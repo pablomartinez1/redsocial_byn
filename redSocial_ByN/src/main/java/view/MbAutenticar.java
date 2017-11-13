@@ -1,9 +1,10 @@
 package view;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -26,63 +27,83 @@ public class MbAutenticar implements Serializable {
 
 	private Usuario usuarioActual;
 	
+	public Usuario getUsuarioActual() {
+		return usuarioActual;
+	}
+
+
+
+	public void setUsuarioActual(Usuario usuarioActual) {
+		this.usuarioActual = usuarioActual;
+	}
+
+	public Usuario usuarioLogeado(){ 
+		return usuarioActual;
+	}
+
+
 	public boolean estaLogeado(){ 
 		return usuarioActual != null;
 	}
 	
-	public Usuario usuarioLogeado(){ 
-		return usuarioActual;
+
+
+	public String loggin() {
+		try{
+	    	usuarioActual = CtrlUsuario.getUserAuth(nombreusuario, password, email);
+	    	FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario Logeado Correctamente",null);
+	    	FacesContext.getCurrentInstance().addMessage(null, msg);
+	    	
+	    	return "home";
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,"No se a podido Inciar Sesion",null);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+			
+			nombreusuario = null;
+			password = null;
+			email = null;
+			return "";
+			
+		}
 	}
-	
-	public ArrayList<Usuario> obtenerListaUsuarios() {
-		return CtrlUsuario.listaUsuarios();
-	}
-	
-	public String logear(){
-		usuarioActual = CtrlUsuario.getUsuarioAutenticado(nombreusuario, password, email);
-		nombreusuario = null;
-		password = null;
-		email = null;
-		if(estaLogeado())
-			return "home?faces-redirect=true";
-		else 
-			return null;
-	}
-	
-	public String deslogear(){
+
+	public String logout() {
 		usuarioActual = null;
-		return "index?faces-redirect=true";
+		return "index?home-faces-redirect=true";
 	}
-	
+
+	public String getNombreusuario() {
+		return nombreusuario;
+	}
+
+	public void setNombreusuario(String nombreusuario) {
+		this.nombreusuario = nombreusuario;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
 	public String getEmail() {
 		return email;
 	}
+
+
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 	
-	public String getNombreUsuario() {
-		return nombreusuario;
-	}
 	
-	public void setNombreUsuario(String nombreusuario) {
-		this.nombreusuario = nombreusuario;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public Usuario getUsuarioActual() {
-		return usuarioActual;
-	}
 
-	public void setUsuarioActual(Usuario usuarioActual) {
-		this.usuarioActual = usuarioActual;
-	}
+
 }

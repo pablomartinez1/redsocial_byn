@@ -1,9 +1,13 @@
-bd\BDUsuario.class
-filtro\FiltroAutenticacion.class
+view\MbComentario.class
 controller\ControladorUsuario.class
-controller\ControladorPost.class
 bd\BDPost.class
 model\Usuario.class
-view\MbAutenticar.class
 view\MbRegistrar.class
+model\Comentario.class
 model\Post.class
+view\MbPost.class
+bd\BDUsuario.class
+filtro\FiltroAutenticacion.class
+controller\ControladorPost.class
+controller\ControladorComentario.class
+view\MbAutenticar.class

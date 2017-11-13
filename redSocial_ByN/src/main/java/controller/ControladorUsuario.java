@@ -1,52 +1,48 @@
 package controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaQuery;
 
-import bd.BDUsuario;
 import model.Usuario;
 
 @Stateless
 public class ControladorUsuario {
-	@Inject BDUsuario bd;
-	
-	public Usuario getUsuarioAutenticado(String nombreusuario, String password, String email){
-		for(Usuario usuario : bd.getUsuarios()){
-			if (usuario.getUsuario().equals(nombreusuario) 
-			 && usuario.getPassword().equals(password)
-			 && usuario.getEmail().equals(email)){
-					return usuario;
-			}
+	@PersistenceContext
+	private EntityManager entity;
+
+	public Usuario byId(int id) {
+		return entity.find(Usuario.class, id);
+	}
+
+	public void create(Usuario user) {
+		entity.persist(user);
+	}
+
+	public List<Usuario> getUsers() {
+		CriteriaQuery<Usuario> cq = entity.getCriteriaBuilder().createQuery(Usuario.class);
+		cq.select(cq.from(Usuario.class));
+		return entity.createQuery(cq).getResultList();
+	}
+
+	public Usuario getUserAuth(String nombreusuario, String password,String email) {
+
+		String hql = "Select u from Usuario u where u.nombreusuario = :nombreusuario AND u.password = :password AND u.email = :email";
+		TypedQuery<Usuario> q = entity.createQuery(hql, Usuario.class);
+		q.setParameter("nombreusuario", nombreusuario);
+		q.setParameter("email", email);
+		q.setParameter("password", password);
+
+		if (q.getSingleResult().getNombreusuario().equals(nombreusuario) && q.getSingleResult().getPassword().equals(password) && q.getSingleResult().getEmail().equals(email)) {
+			return q.getSingleResult();
 		}
+
 		return null;
 	}
 	
-	public boolean existeNombreUsuario(String nombreusuario){
-		for(Usuario usuario : bd.getUsuarios()){
-			if (usuario.getUsuario().equals(nombreusuario)){
-					return true;
-			}
-		}
-		return false;
-	}
 	
-	public boolean existeEmailUsuario(String email){
-		for(Usuario usuario : bd.getUsuarios()){
-			if (usuario.getEmail().equals(email)){
-					return true;
-			}
-		}
-		return false;
-	}
-	
-	public void registrar(Usuario usuario) {
-		usuario.setId(bd.proximoId());
-		bd.setUsuario(usuario);
-	}
-	
-	public ArrayList<Usuario> listaUsuarios() {
-		return bd.getUsuarios();
-	}
 }

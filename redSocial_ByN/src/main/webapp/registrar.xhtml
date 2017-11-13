@@ -16,20 +16,24 @@
 	<h:form>
 		<div>
 			<p style="display: inline-block; width: 100px;">Usuario</p>
-			<h:inputText value="#{mbRegistrar.nombreUsuario}" />
+			<h:inputText value="#{mbRegistrar.nombreUsuario}" required="true" />
 		</div>
 		<div>
 			<p style="display: inline-block; width: 100px;">Email</p>
-			<h:inputText value="#{mbRegistrar.email}" />
+			<h:inputText value="#{mbRegistrar.email}" required="true"/>
 		</div>
 		<div>
 			<p style="display: inline-block; width: 100px;">Password</p>
-			<h:inputSecret value="#{mbRegistrar.password}" />
+			<h:inputSecret value="#{mbRegistrar.password}" required="true"/>
 		</div>
 		<div style="width: 98px;">
-			<h:commandLink action="#{mbRegistrar.registrar()}" >
-				<p style="text-decoration: none; background-color: silver; border-radius: 5px; padding: 10px; border-style: groove;">Registrarse</p>
-			</h:commandLink>
+		<h:commandButton action="#{mbRegistrar.registrar()}" value="Registrarse" style="text-decoration: none; background-color: silver; border-radius: 5px; padding: 10px; border-style: groove;" >
+		<f:ajax execute="@form" render="@form"/>
+		</h:commandButton>
+		<div>
+		<h:messages> </h:messages>
+		</div>
+		
 		</div>
 	</h:form>
 </h:body>

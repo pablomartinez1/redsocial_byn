@@ -7,7 +7,7 @@
 		<nav>
 			<h:link value="Crear Post" outcome="crearpost" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
 			<h:link value="Ver Mis Posts" outcome="misposts" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
-			<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.deslogear()}" rendered="#{mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.Logout()}" rendered="#{mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
 		</nav>
 	</h:form>
 	
@@ -15,13 +15,16 @@
 	<h:form>
 		<div>
 			<p style="display: inline-block; width: 100px;">Post:</p>
-			<h:inputTextarea cols="30" rows="10" value="#{mbPost.contenido}" />
+			<h:inputTextarea cols="30" rows="10" value="#{mbPost.contenido}" required = "true" />
 			
 		</div>
 		<div style="width: 68px;">
-			<h:commandLink action="#{mbPost.crear()}">
-				<p style="text-decoration: none; background-color: silver; border-radius: 5px; padding: 10px; border-style: groove;">Crear</p>
-			</h:commandLink>
+		<h:commandButton action="#{mbPost.crear()}" value="Crear" style="text-decoration: none; background-color: silver; border-radius: 5px; padding: 10px; border-style: groove;" >
+		<f:ajax execute="@form" render="@form"/>
+		</h:commandButton>
+		<div>
+		<h:messages> </h:messages>
+		</div>
 		</div>
 	</h:form>
 </h:body>

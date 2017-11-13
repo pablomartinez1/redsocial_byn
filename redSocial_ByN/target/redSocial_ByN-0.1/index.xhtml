@@ -14,12 +14,34 @@
 				<h:link value="Inicio" outcome="index" style="font-size:20px; text-decoration: none; margin: 0 10px 0 10px;"/>
 				<h:link value="Iniciar Sesion" outcome="login" rendered="#{not mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
 				<h:link value="Registrarse" outcome="registrar" rendered="#{not mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
-				<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.deslogear()}" rendered="#{mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+				<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.logout()}" rendered="#{mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
 			</nav>
 		</h:form>
 		
         <h1>Bienvenido a Blanco y Negro Red Social!</h1>
         <h2>Para crear un post deberas iniciar sesion primero.</h2>
+        
+     	<h:dataTable value="#{mbPost.listaPosts()}" var="post">
+		    <h:column>
+			    <div style="background-color: silver;">
+			    	<div style="display: inline-block;">
+				        <h:outputText  
+				        	value="#{post.usuario.nombreusuario}">
+				        </h:outputText >
+			        </div>
+			        <div style="display: inline-block;">
+		      		    <h:outputText 
+				        	value="#{post.fecha}">
+				        </h:outputText >
+			        </div>
+				</div>		       
+		        <div style="background-color: lightgray;">
+	      		    <h:outputText  
+			        	value="#{post.contenido}">
+			        </h:outputText >
+		        </div>
+		    </h:column>
+		</h:dataTable>
     </f:view>
 </h:body>
 </html>

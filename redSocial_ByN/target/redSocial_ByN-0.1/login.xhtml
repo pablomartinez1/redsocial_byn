@@ -16,7 +16,7 @@
 	<h:form>
 		<div>
 			<p style="display: inline-block; width: 100px;">Usuario:</p>
-			<h:inputText value="#{mbAutenticar.nombreUsuario}" />
+			<h:inputText value="#{mbAutenticar.nombreusuario}" />
 		</div>
 		<div>
 			<p style="display: inline-block; width: 100px;">Email:</p>
@@ -27,9 +27,12 @@
 			<h:inputSecret value="#{mbAutenticar.password}" />
 		</div>
 		<div style="width: 68px;">
-			<h:commandLink action="#{mbAutenticar.logear()}">
-				<p style="text-decoration: none; background-color: silver; border-radius: 5px; padding: 10px; border-style: groove;">Entrar</p>
-			</h:commandLink>
+		<h:commandButton action="#{mbAutenticar.loggin()}" value="Loggearse" style="text-decoration: none; background-color: silver; border-radius: 5px; padding: 10px; border-style: groove;" >
+		<f:ajax execute="@form" render="@form"/>
+		</h:commandButton>
+		<div>
+		<h:messages> </h:messages>
+		</div>
 		</div>
 	</h:form>
 </h:body>

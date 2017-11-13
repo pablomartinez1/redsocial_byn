@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
    <title>Index</title>
    <h:outputStylesheet library="css" name="estilo.css"  />
@@ -11,20 +12,63 @@
     <f:view>
        	<h:form style="background-color: lightgray; height: 30px;">
 			<nav>
-				<h:commandLink value="Crear Post" outcome="crearpost" action="#{mbAutenticar.deslogear()}" rendered="#{mbAutenticar.estaLogeado()}" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
-				<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.deslogear()}" rendered="#{mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+				<h:link value="Crear Post" outcome="crearpost" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+				<h:link value="Ver Mis Posts" outcome="misposts" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+				<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.logout()}" rendered="#{mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
 			</nav>
 		</h:form>
        	<h1>
        	Bienvenido 
-			<h:outputText value="#{mbAutenticar.usuarioActual.usuario}" />
+			<h:outputText value="#{mbAutenticar.usuarioActual.nombreusuario}" />
 		a Blanco y Negro Red Social!
 		</h1>
 		
-		<h:dataTable value="#{mbAutenticar.obtenerListaUsuarios()}" var="usuario">
+		<h:dataTable value="#{mbPost.listaPosts()}" var="post">
 		    <h:column>
-		        <h:link value="#{usuario.email}">
-		        </h:link>
+		    <div style="background-color: silver;">
+		    	<div style="display: inline-block;">
+			        <h:outputText  
+			        	value="#{post.usuario.nombreusuario}">
+			        </h:outputText >
+		        </div>
+		        <div style="display: inline-block;">
+	      		    <h:outputText 
+			        	value="#{post.fecha}">
+			        </h:outputText >
+		        </div>
+			</div>		       
+	        <div style="background-color: lightgray;">
+      		    <h:outputText  
+		        	value="#{post.contenido}">
+		        </h:outputText >
+	        </div>
+	        
+	        <div>
+	        	
+	        </div>
+    		<div style="padding: 10px; background-color: lightblue; border-bottom: 1px solid gray; border-top: 1px solid gray;">
+	    		<ul>
+	    			<ui:repeat value="#{mbComentario.listaComentarios(post)}" var="comentario">
+			    		<div>
+			    		<h:outputText  
+			        	value="#{comentario.usuario.nombreusuario}">
+			       	 	</h:outputText >
+			    		<h:outputText  
+			        	value="#{comentario.fecha}">
+			       		 </h:outputText >
+			    		</div>
+			    		<div>
+			    		<h:outputText  
+			        	value="#{comentario.contenido}">
+			        	</h:outputText >
+			    		</div>
+					</ui:repeat>
+					<h:form>
+					<h:inputText style="display: inline-block;" value="#{mbComentario.comentario}" />
+	        		<h:button action="#{mbComentario.crear()}" style="display: inline-block;" value="Comentar"></h:button>
+					</h:form>
+		    	</ul>
+		    </div>
 		    </h:column>
 		</h:dataTable>
     </f:view>

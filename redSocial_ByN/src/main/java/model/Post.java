@@ -2,17 +2,33 @@ package model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Post {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
+	@ManyToOne
 	private Usuario usuario;
+	
+	private int id_user;
+	
+
 	private Date fecha;
 	private String contenido;
 
-	public Post(Usuario usuario, Date fecha, String contenido) {
-		super();
-		this.usuario = usuario;
-		this.fecha = fecha;
-		this.contenido = contenido;
+	public int getId_user() {
+		return id_user;
+	}
+
+	public void setId_user(int id_user) {
+		this.id_user = id_user;
 	}
 
 	public int getId() {

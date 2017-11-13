@@ -7,17 +7,17 @@
 		<nav>
 			<h:link value="Crear Post" outcome="crearpost" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
 			<h:link value="Ver Mis Posts" outcome="misposts" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
-			<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.deslogear()}" rendered="#{mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.logout()}" rendered="#{mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
 		</nav>
 	</h:form>
 	
 	<h1>Mis Posts</h1>
-	<h:dataTable value="#{mbPost.obtenerPostsUsuario()}" var="post">
+	<h:dataTable value="#{mbPost.lista()}" var="post">
 	    <h:column>
 	    <div style="background-color: silver;">
 	    	<div style="display: inline-block;">
 		        <h:outputText  
-		        	value="#{post.usuario.usuario}">
+		        	value="#{post.usuario.nombreusuario}">
 		        </h:outputText >
 	        </div>
 	        <div style="display: inline-block;">
