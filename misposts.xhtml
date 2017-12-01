@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:body>
+    <h:form style="background-color: lightgray; height: 30px;">
+		<nav>
+			<h:link value="Inicio" outcome="home" style="font-size:20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			<h:link value="Crear Post" outcome="crearpost" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			<h:link value="Ver Mis Posts" outcome="misposts" style="font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+			<h:commandLink value="Cerrar Sesion" action="#{mbAutenticar.logout()}" rendered="#{mbAutenticar.estaLogeado()}" style="float: right; font-size: 20px; text-decoration: none; margin: 0 10px 0 10px;"/>
+		</nav>
+	</h:form>
+	
+	<h1>Mis Posts</h1>
+	<h:dataTable value="#{mbPost.lista()}" var="post">
+	    <h:column>
+	    <div style="background-color: silver;">
+	    	<div style="display: inline-block;">
+		        <h:outputText  
+		        	value="#{post.usuario.nombreusuario}">
+		        </h:outputText >
+	        </div>
+	        <div style="display: inline-block;">
+      		    <h:outputText 
+		        	value="#{post.fecha}">
+		        </h:outputText >
+	        </div>
+		</div>		       
+        <div style="background-color: lightgray;">
+     		    <h:outputText  
+	        	value="#{post.contenido}">
+	        </h:outputText >
+        </div>
+	    </h:column>
+	</h:dataTable>
+</h:body>
+</html>
